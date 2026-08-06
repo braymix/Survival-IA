@@ -101,6 +101,35 @@ class SqliteCorpusReader(private val dbPath: String) : CorpusReader {
             }
         }
 
+    override suspend fun documentChunks(docId: String): List<RetrievedChunk> =
+        withContext(Dispatchers.IO) {
+            withConnection { conn ->
+                val out = ArrayList<RetrievedChunk>()
+                conn.prepare(
+                    "SELECT chunk_id,doc_id,titolo_doc,sezione,pagina_inizio,pagina_fine,categoria," +
+                        "licenza,testo FROM chunks WHERE doc_id = ? ORDER BY rowid",
+                ).use { st ->
+                    st.bindText(1, docId)
+                    while (st.step()) {
+                        out.add(
+                            RetrievedChunk(
+                                chunkId = st.getText(0),
+                                docId = st.getText(1),
+                                docTitle = st.getText(2),
+                                section = if (st.isNull(3)) null else st.getText(3),
+                                pageStart = if (st.isNull(4)) null else st.getLong(4).toInt(),
+                                pageEnd = if (st.isNull(5)) null else st.getLong(5).toInt(),
+                                category = if (st.isNull(6)) null else Category.fromId(st.getText(6)),
+                                license = st.getText(7),
+                                text = st.getText(8),
+                            ),
+                        )
+                    }
+                }
+                out
+            }
+        }
+
     override suspend fun searchDense(queryEmbedding: FloatArray, topK: Int): List<ScoredChunk> =
         withContext(Dispatchers.Default) {
             val vectors = loadVectors()

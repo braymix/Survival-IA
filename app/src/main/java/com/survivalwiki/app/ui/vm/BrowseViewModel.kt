@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.survivalwiki.core.retrieval.Category
 import com.survivalwiki.core.retrieval.CorpusDocument
 import com.survivalwiki.core.retrieval.CorpusReader
+import com.survivalwiki.core.retrieval.RetrievedChunk
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,6 +27,13 @@ class BrowseViewModel @Inject constructor(
     private val _documents = MutableStateFlow<List<CorpusDocument>>(emptyList())
     val documents: StateFlow<List<CorpusDocument>> = _documents.asStateFlow()
 
+    // Terzo livello: documento aperto → sue sezioni (chunk) leggibili.
+    private val _openDoc = MutableStateFlow<CorpusDocument?>(null)
+    val openDoc: StateFlow<CorpusDocument?> = _openDoc.asStateFlow()
+
+    private val _docChunks = MutableStateFlow<List<RetrievedChunk>>(emptyList())
+    val docChunks: StateFlow<List<RetrievedChunk>> = _docChunks.asStateFlow()
+
     init {
         viewModelScope.launch {
             _categories.value = runCatching { corpus.categories() }.getOrDefault(emptyList())
@@ -34,6 +42,8 @@ class BrowseViewModel @Inject constructor(
 
     fun select(category: Category?) {
         _selected.value = category
+        _openDoc.value = null
+        _docChunks.value = emptyList()
         if (category == null) {
             _documents.value = emptyList()
         } else {
@@ -41,5 +51,18 @@ class BrowseViewModel @Inject constructor(
                 _documents.value = runCatching { corpus.documents(category) }.getOrDefault(emptyList())
             }
         }
+    }
+
+    fun openDocument(doc: CorpusDocument) {
+        _openDoc.value = doc
+        viewModelScope.launch {
+            _docChunks.value =
+                runCatching { corpus.documentChunks(doc.docId) }.getOrDefault(emptyList())
+        }
+    }
+
+    fun closeDocument() {
+        _openDoc.value = null
+        _docChunks.value = emptyList()
     }
 }

@@ -32,6 +32,9 @@ interface CorpusReader {
     /** Documenti che contengono chunk della categoria data. */
     suspend fun documents(category: Category): List<CorpusDocument>
 
+    /** Chunk (sezioni) di un documento, in ordine di lettura. Per la modalità wiki. */
+    suspend fun documentChunks(docId: String): List<RetrievedChunk>
+
     /** Dense retrieval: top-K con punteggio coseno (vettori L2-normalizzati). Ordinati decrescenti. */
     suspend fun searchDense(queryEmbedding: FloatArray, topK: Int): List<ScoredChunk>
 

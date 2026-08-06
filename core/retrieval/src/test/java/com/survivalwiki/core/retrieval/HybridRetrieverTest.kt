@@ -27,6 +27,7 @@ class HybridRetrieverTest {
         override suspend fun manifest() = CorpusManifest(1, 1, dense.size, "", "")
         override suspend fun categories() = emptyList<Pair<Category, Int>>()
         override suspend fun documents(category: Category) = emptyList<CorpusDocument>()
+        override suspend fun documentChunks(docId: String) = emptyList<RetrievedChunk>()
         override suspend fun searchDense(queryEmbedding: FloatArray, topK: Int) =
             dense.take(topK).mapIndexed { i, c -> ScoredChunk(c, 0.9 - i * 0.01) }
         override suspend fun searchLexical(query: String, topK: Int) = lexical.take(topK)

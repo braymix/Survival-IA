@@ -203,27 +203,30 @@ class SqliteCorpusReader(private val dbPath: String) : CorpusReader {
 
     companion object {
         /**
-         * Costruisce una query FTS5: token di CONTENUTO in OR, ognuno con prefix-match `*`.
-         * Le stopword IT/EN sono rimosse: è ciò che permette a una query fuori dominio
-         * ("chi ha vinto il mondiale") di non produrre alcun match lessicale nel corpus.
+         * Costruisce una query FTS5: token di CONTENUTO in OR, con **match esatto** (niente prefix).
+         * Le stopword IT/EN — incluse le ELISIONI (dell', qual, all'…) — sono rimosse: così una
+         * query fuori dominio non produce alcun match lessicale, e il prefix non causa collisioni
+         * come "ripara" → "riparo". Calibrato sul golden set (vedi tools/eval, ADR-0002/0003).
          */
         internal fun buildMatchQuery(query: String): String =
             Regex("[\\p{L}\\p{N}]+").findAll(query.lowercase())
                 .map { it.value }
-                .filter { it.length >= 2 && it !in STOPWORDS }
-                .map { "\"$it\"*" }
+                .filter { it.length >= 3 && it !in STOPWORDS }
+                .map { "\"$it\"" }
                 .joinToString(" OR ")
 
         private val STOPWORDS: Set<String> = setOf(
-            // IT
+            // IT (incluse elisioni)
             "il", "lo", "la", "le", "gli", "un", "uno", "una", "di", "da", "del", "dei", "della",
-            "delle", "degli", "al", "allo", "alla", "con", "su", "per", "tra", "fra", "come", "che",
-            "chi", "cosa", "come", "quando", "dove", "perche", "e", "ed", "o", "ma", "se", "si", "no",
-            "non", "mi", "ti", "ci", "vi", "ne", "in", "a", "ha", "ho", "hai", "sono", "essere",
-            "fare", "posso", "devo", "vorrei", "quale", "quali", "questo", "questa",
+            "delle", "degli", "dell", "al", "allo", "alla", "all", "con", "su", "sul", "sull",
+            "per", "tra", "fra", "come", "che", "chi", "cosa", "quando", "dove", "perche", "e",
+            "ed", "o", "ma", "se", "si", "no", "non", "mi", "ti", "ci", "vi", "ne", "nel", "nell",
+            "in", "a", "ha", "ho", "hai", "sono", "essere", "fare", "posso", "devo", "vorrei",
+            "qual", "quale", "quali", "quest", "questo", "questa", "quell", "dall", "coi", "col",
+            "ai", "agli", "dai",
             // EN
-            "the", "a", "an", "of", "to", "in", "on", "for", "and", "or", "how", "what", "who",
-            "when", "where", "why", "is", "are", "do", "does", "i", "can", "should", "with",
+            "the", "an", "of", "to", "on", "for", "and", "or", "how", "what", "who",
+            "when", "where", "why", "is", "are", "do", "does", "can", "should", "with",
         )
 
         internal fun blobToFloats(blob: ByteArray, dim: Int): FloatArray {

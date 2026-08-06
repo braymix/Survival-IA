@@ -55,3 +55,29 @@ jobs:
           name: app-debug
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
+
+  python-ingest-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install ingest deps
+        run: pip install -r tools/ingest/requirements.txt
+
+      - name: Chunking unit tests
+        run: python tools/ingest/test_chunking.py
+
+      # Nota: run_eval.py richiede il modello e5 in tools/models/e5-small (scaricato separatamente).
+      # In CI si esegue solo se il modello è disponibile; altrimenti si salta con un avviso.
+      - name: Retrieval eval (se il modello e5 è presente)
+        run: |
+          if [ -f tools/models/e5-small/model_int8.onnx ]; then
+            python tools/eval/run_eval.py
+          else
+            echo "::notice::modello e5 assente in CI — eval del retrieval saltata (vedi tools/ingest/README)."
+          fi

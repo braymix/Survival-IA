@@ -33,9 +33,9 @@ class HybridRetriever(
     private val denseTopK: Int = 20,
     private val lexicalTopK: Int = 20,
     private val categoryBoost: Double = 0.5,
-    // Coseno minimo del miglior risultato denso perché una query priva di supporto lessicale sia
-    // considerata "in dominio". Calibrato sul golden set in Fase 6.
-    private val denseFloor: Float = 0.84f,
+    // Coseno minimo del miglior risultato denso perché una query sia considerata "in dominio".
+    // Calibrato sul golden set (Fase 6): in-domain min=0.843, OOD max=0.821 → 0.835 separa.
+    private val denseFloor: Float = 0.835f,
 ) {
     suspend fun retrieve(query: String, categoryFilter: Category? = null): RetrievalOutcome {
         when (val verdict = safety.check(query)) {

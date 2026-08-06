@@ -77,7 +77,7 @@ in_domain:
   - q: "dove posizionare il rifugio nel bosco"
     doc: seed-rifugio-01
   - q: "come evitare l'ipotermia di notte"
-    doc: seed-rifugio-01
+    doc: seed-medico-03
   - q: "coprire il riparo con frasche e foglie"
     doc: seed-rifugio-01
 

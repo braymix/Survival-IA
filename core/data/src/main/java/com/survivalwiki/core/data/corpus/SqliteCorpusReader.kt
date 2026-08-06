@@ -223,7 +223,7 @@ class SqliteCorpusReader(private val dbPath: String) : CorpusReader {
             "ed", "o", "ma", "se", "si", "no", "non", "mi", "ti", "ci", "vi", "ne", "nel", "nell",
             "in", "a", "ha", "ho", "hai", "sono", "essere", "fare", "posso", "devo", "vorrei",
             "qual", "quale", "quali", "quest", "questo", "questa", "quell", "dall", "coi", "col",
-            "ai", "agli", "dai",
+            "ai", "agli", "dai", "ultimo", "ultima", "ultimi", "ultime", "primo", "prima", "modo",
             // EN
             "the", "an", "of", "to", "on", "for", "and", "or", "how", "what", "who",
             "when", "where", "why", "is", "are", "do", "does", "can", "should", "with",

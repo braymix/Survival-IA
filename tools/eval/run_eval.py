@@ -15,6 +15,7 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sqlite3
 import sys
@@ -41,6 +42,7 @@ STOPWORDS = {
     "ma", "se", "si", "no", "non", "mi", "ti", "ci", "vi", "ne", "nel", "nell", "in", "a",
     "ha", "ho", "hai", "sono", "essere", "fare", "posso", "devo", "vorrei", "qual", "quale",
     "quali", "quest", "questo", "questa", "quell", "dall", "coi", "col", "ai", "agli", "dai",
+    "ultimo", "ultima", "ultimi", "ultime", "primo", "prima", "cosa", "modo", "così",
     "the", "an", "of", "to", "on", "for", "and", "or", "how", "what", "who",
     "when", "where", "why", "is", "are", "do", "does", "i", "can", "should", "with",
 }
@@ -58,15 +60,33 @@ def build_match(query: str) -> str:
     return " OR ".join(f'"{t}"' for t in toks)
 
 
+def load_synonyms(here: str):
+    path = os.path.join(here, "..", "..", "app", "src", "main", "assets", "synonyms.json")
+    if not os.path.exists(path):
+        return {}
+    raw = json.load(open(path, encoding="utf-8"))
+    return {k: v for k, v in raw.items() if not k.startswith("_") and isinstance(v, list)}
+
+
 class Retriever:
-    def __init__(self, db_path: str, model_dir: str):
+    def __init__(self, db_path: str, model_dir: str, synonyms: dict | None = None):
         self.con = sqlite3.connect(db_path)
         self.emb = E5Embedder(model_dir)
+        self.synonyms = synonyms or {}
         rows = self.con.execute("SELECT chunk_id, doc_id FROM chunks").fetchall()
         self.doc_of = {cid: did for cid, did in rows}
         self.vecs = {cid: np.frombuffer(b, dtype=np.float32)
                      for cid, _dim, b in self.con.execute("SELECT chunk_id,dim,vector FROM chunk_vectors")}
         self.all_ids = list(self.vecs.keys())
+
+    def expand_lexical(self, query: str) -> str:
+        # Mirror di QueryRewriter: aggiunge i sinonimi delle chiavi contenute nella query.
+        low = query.lower()
+        extra = []
+        for key, syns in self.synonyms.items():
+            if key.lower() in low:
+                extra.extend(syns)
+        return query + " " + " ".join(extra) if extra else query
 
     def dense(self, query: str):
         qv = self.emb.embed(f"query: {query}")
@@ -74,7 +94,7 @@ class Retriever:
         return scored  # list of (cos, chunk_id)
 
     def lexical(self, query: str):
-        match = build_match(query)
+        match = build_match(self.expand_lexical(query))
         if not match:
             return []
         cur = self.con.execute(
@@ -115,7 +135,7 @@ def main() -> int:
     with open(args.questions, encoding="utf-8") as f:
         gold = yaml.safe_load(f)
 
-    r = Retriever(args.db, args.model)
+    r = Retriever(args.db, args.model, synonyms=load_synonyms(here))
 
     # --- in dominio ---
     in_dom = gold["in_domain"]

@@ -5,6 +5,8 @@
 Valutato con `tools/eval/run_eval.py`, che replica la pipeline Kotlin (dense e5 + FTS5/BM25 + RRF
 + gate "in dominio") sullo **stesso** DB e **stesso** modello e5 spediti nell'app.
 
+Corpus: **19 documenti, 93 chunk** (tutte e 10 le categorie).
+
 | Metrica | Risultato |
 |---|---|
 | Domande in dominio | 41 |
@@ -12,6 +14,9 @@ Valutato con `tools/eval/run_eval.py`, che replica la pipeline Kotlin (dense e5 
 | **recall@5** (in dominio) | **41/41 = 100%** |
 | **gate-pass** (in dominio) | **41/41 = 100%** |
 | **Anti-allucinazione** (fuori dominio → NESSUNA_FONTE) | **10/10 = 100%** |
+
+L'eval applica l'espansione sinonimi come il `QueryRewriter` dell'app. Con 93 chunk il retrieval
+brute-force resta ~5 ms.
 
 Il test anti-allucinazione è **superato al 100%**, come richiesto.
 

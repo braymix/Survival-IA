@@ -2,18 +2,34 @@
 
 ## Corpus incluso nell'app (`app/src/main/assets/corpus/survival_corpus.db`)
 
-| doc_id | Titolo | Autore | Licenza | Note |
-|---|---|---|---|---|
-| seed-acqua-01 | Potabilizzazione dell'acqua in emergenza | SurvivalWiki AI | CC0-1.0 | Opera propria, dedicata al pubblico dominio |
-| seed-fuoco-01 | Accensione e gestione del fuoco | SurvivalWiki AI | CC0-1.0 | Opera propria |
-| seed-medico-01 | Controllo delle emorragie esterne | SurvivalWiki AI | CC0-1.0 | Opera propria |
-| seed-nav-01 | Orientarsi senza bussola | SurvivalWiki AI | CC0-1.0 | Opera propria |
-| seed-rifugio-01 | Costruire un riparo di emergenza | SurvivalWiki AI | CC0-1.0 | Opera propria |
-| seed-segn-01 | Segnali di soccorso | SurvivalWiki AI | CC0-1.0 | Opera propria |
+Tutte le schede seed sono **opera propria** dedicata al pubblico dominio (**CC0-1.0**).
+
+| doc_id | Titolo | Categoria |
+|---|---|---|
+| seed-acqua-01 | Potabilizzazione dell'acqua in emergenza | acqua |
+| seed-acqua-02 | Trovare e raccogliere acqua | acqua |
+| seed-fuoco-01 | Accensione e gestione del fuoco | fuoco |
+| seed-rifugio-01 | Costruire un riparo di emergenza | rifugio |
+| seed-cibo-01 | Piante commestibili e test di commestibilità | cibo |
+| seed-cibo-02 | Procurarsi cibo con pesca e trappole | cibo |
+| seed-medico-01 | Controllo delle emorragie esterne | medico |
+| seed-medico-02 | Ustioni e fratture | medico |
+| seed-medico-03 | Riconoscere e trattare l'ipotermia | medico |
+| seed-nav-01 | Orientarsi senza bussola | navigazione |
+| seed-nav-02 | Usare mappa e bussola | navigazione |
+| seed-segn-01 | Segnali di soccorso | segnalazione |
+| seed-attr-01 | Nodi essenziali di sopravvivenza | attrezzatura |
+| seed-attr-02 | Uso e cura del coltello | attrezzatura |
+| seed-clima-01 | Sicurezza durante i temporali e i fulmini | clima |
+| seed-clima-02 | Sopravvivere al freddo estremo e alla neve | clima |
+| seed-clima-03 | Sopravvivere al caldo estremo e al deserto | clima |
+| seed-sic-01 | Animali pericolosi e morsi di serpente | sicurezza |
+| seed-sic-02 | Sicurezza in acqua e sul ghiaccio | sicurezza |
 
 Il corpus seed è **materiale sintetico originale** scritto per il progetto e dedicato al
-pubblico dominio (CC0). Serve a far funzionare e testare l'intera pipeline end-to-end. Non è
-un sostituto di manuali autorevoli: va ampliato con fonti reali (vedi sotto).
+pubblico dominio (CC0), con contenuti generali e responsabili. Serve a far funzionare e testare
+l'intera pipeline end-to-end e a rendere l'app utile fin da subito; non sostituisce manuali
+autorevoli e va comunque ampliato con fonti reali (vedi sotto).
 
 ## Fonti reali candidate (da aggiungere con licenza verificata)
 

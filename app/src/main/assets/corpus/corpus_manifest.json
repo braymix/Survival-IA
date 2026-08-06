@@ -1,17 +1,21 @@
 {
   "schema_version": 1,
-  "built_at": "2026-08-06T18:33:04.555659+00:00",
+  "built_at": "2026-08-06T22:46:29.130452+00:00",
   "embedding_model": "multilingual-e5-small-int8",
   "embedding_dim": 384,
-  "document_count": 6,
-  "chunk_count": 30,
+  "document_count": 19,
+  "chunk_count": 93,
   "categories": {
-    "acqua": 5,
+    "acqua": 10,
+    "attrezzatura": 10,
+    "cibo": 9,
+    "clima": 15,
     "fuoco": 5,
-    "medico": 5,
-    "navigazione": 5,
+    "medico": 15,
+    "navigazione": 10,
     "rifugio": 5,
-    "segnalazione": 5
+    "segnalazione": 5,
+    "sicurezza": 9
   },
-  "sha256": "991e24c9c5caa4a1f4768a1600abba0107da0cbed3f55195ca00250bf8322021"
+  "sha256": "e3d0d0c2b2a47d15fce7f3da1d7962ea61e431e7395f2f703a444100851b2821"
 }

@@ -1,0 +1,85 @@
+# Classificazione delle categorie (lista chiusa) del corpus.
+# 1) `keywords`: parole/frasi che, se presenti nel testo del chunk, votano per una categoria.
+# 2) `overrides`: forzatura manuale per singolo doc_id (vince sempre sulla classificazione a keyword).
+#
+# Le categorie DEVONO combaciare con l'enum Category in core:retrieval.
+
+keywords:
+  acqua:
+    - acqua
+    - potabil
+    - bollit
+    - filtr
+    - sodis
+    - disidrataz
+    - borraccia
+  fuoco:
+    - fuoco
+    - fiamma
+    - esca
+    - acciarino
+    - ferrocerio
+    - brace
+    - accension
+  rifugio:
+    - riparo
+    - rifugio
+    - lean-to
+    - isolament
+    - tenda
+    - bivacco
+  cibo:
+    - cibo
+    - commestibil
+    - pianta
+    - caccia
+    - pesca
+    - trappola
+    - foraggiament
+  medico:
+    - emorragia
+    - ferita
+    - laccio
+    - ustione
+    - frattura
+    - primo soccorso
+    - shock
+    - ipotermia
+  navigazione:
+    - orientar
+    - bussola
+    - stella polare
+    - punti cardinali
+    - mappa
+    - direzione
+  segnalazione:
+    - segnale
+    - soccorso
+    - specchio
+    - fischio
+    - fumo
+    - sos
+  attrezzatura:
+    - coltello
+    - corda
+    - nodo
+    - zaino
+    - kit
+    - attrezzatura
+  clima:
+    - meteo
+    - tempesta
+    - vento
+    - neve
+    - caldo estremo
+    - freddo estremo
+    - fulmine
+  sicurezza:
+    - animali pericolosi
+    - serpente
+    - sicurezza
+    - valanga
+    - annegament
+
+# Forzature manuali: doc_id -> categoria
+overrides: {}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-08-06T18:03:37.965607+00:00",
+  "embedding_model": "multilingual-e5-small-int8",
+  "embedding_dim": 384,
+  "document_count": 6,
+  "chunk_count": 30,
+  "categories": {
+    "acqua": 5,
+    "fuoco": 5,
+    "medico": 5,
+    "navigazione": 5,
+    "rifugio": 5,
+    "segnalazione": 5
+  },
+  "sha256": "6046431c33d67ee4cc14d75589a863e4205c7c2164319d22c2e2924822c050c5"
+}

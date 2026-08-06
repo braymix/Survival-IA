@@ -21,9 +21,13 @@ __pycache__/
 venv/
 *.egg-info/
 
-# Modelli e corpus generati (mai committati; scaricati/generati)
+# Modelli (mai committati; scaricati a runtime con verifica hash)
 *.gguf
 *.onnx
+tools/models/
+# Output della pipeline di ingest (il DB "buono" viene copiato in app/.../assets/corpus/)
 tools/ingest/out/
 tools/ingest/input/
-survival_corpus.db
+# Ambiente Python locale
+tools/.venv/
+# NOTA: app/src/main/assets/corpus/survival_corpus.db È committato (168 KB, bundle offline).

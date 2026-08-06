@@ -486,6 +486,8 @@ def write_db(db_path: str, docs: List[Document], chunks: List[Chunk], vectors: n
         con.execute("INSERT INTO meta(key,value) VALUES('embedding_model',?)",
                     ("multilingual-e5-small-int8",))
         con.execute("INSERT INTO meta(key,value) VALUES('embedding_dim',?)", (str(EMBED_DIM),))
+        con.execute("INSERT INTO meta(key,value) VALUES('built_at',?)",
+                    (datetime.now(timezone.utc).isoformat(),))
         con.commit()
     finally:
         con.close()

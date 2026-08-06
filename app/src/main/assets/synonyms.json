@@ -1,0 +1,22 @@
+{
+  "_comment": "Dizionario statico IT/EN per l'espansione lessicale (BM25). chiave -> sinonimi/termini correlati.",
+  "purificare acqua": ["potabilizzazione", "potabilizzare", "filtraggio", "bollitura", "cloro", "disinfezione"],
+  "potabilizzare": ["bollitura", "filtrazione", "sodis", "cloro", "disinfezione acqua"],
+  "acqua potabile": ["potabilizzazione", "bollitura", "filtrazione"],
+  "accendere fuoco": ["esca", "acciarino", "ferrocerio", "scintilla", "accensione"],
+  "fuoco": ["esca", "acciarino", "brace", "fiamma"],
+  "emorragia": ["sanguinamento", "pressione diretta", "laccio emostatico", "medicazione compressiva"],
+  "sanguinamento": ["emorragia", "pressione diretta", "laccio"],
+  "ferita": ["medicazione", "emorragia", "disinfezione"],
+  "orientarsi": ["punti cardinali", "bussola", "stella polare", "nord", "direzione"],
+  "bussola": ["orientamento", "punti cardinali", "nord"],
+  "riparo": ["rifugio", "bivacco", "lean-to", "isolamento"],
+  "rifugio": ["riparo", "bivacco", "isolamento termico"],
+  "soccorso": ["segnale", "sos", "specchio di segnalazione", "fumo", "aiuto"],
+  "segnalare": ["segnale", "specchio", "fumo", "fischio", "sos"],
+  "ipotermia": ["freddo", "isolamento", "riparo", "asciutto"],
+  "ustione": ["bruciatura", "primo soccorso", "raffreddare"],
+  "purify water": ["boiling", "filtration", "disinfection", "chlorine"],
+  "first aid": ["bleeding", "wound", "pressure", "shock"],
+  "fire": ["tinder", "ferro rod", "ember", "ignition"]
+}

@@ -10,10 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import com.survivalwiki.app.ui.screens.AnswerScreen
 import com.survivalwiki.app.ui.screens.AskScreen
 import com.survivalwiki.app.ui.screens.BrowseScreen
@@ -67,9 +71,19 @@ fun SurvivalWikiApp() {
         ) {
             composable(Destination.Onboarding.route) { OnboardingScreen() }
             composable(Destination.Ask.route) {
-                AskScreen(onAsk = { navController.navigate(Destination.Answer.route) })
+                AskScreen(onAsk = { query, category ->
+                    val q = URLEncoder.encode(query, StandardCharsets.UTF_8.name())
+                    val cat = category?.id.orEmpty()
+                    navController.navigate("answer?q=$q&cat=$cat")
+                })
             }
-            composable(Destination.Answer.route) { AnswerScreen() }
+            composable(
+                route = "answer?q={q}&cat={cat}",
+                arguments = listOf(
+                    navArgument("q") { type = NavType.StringType; defaultValue = "" },
+                    navArgument("cat") { type = NavType.StringType; defaultValue = "" },
+                ),
+            ) { AnswerScreen() }
             composable(Destination.Browse.route) { BrowseScreen() }
             composable(Destination.Saved.route) { SavedScreen() }
             composable(Destination.Settings.route) { SettingsScreen() }

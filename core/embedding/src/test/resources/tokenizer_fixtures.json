@@ -1,0 +1,371 @@
+[
+ {
+  "text": "query: come potabilizzare l'acqua",
+  "ids": [
+   0,
+   41,
+   1294,
+   12,
+   1380,
+   1540,
+   16144,
+   58424,
+   96,
+   25,
+   47215,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁que",
+   "ry",
+   ":",
+   "▁come",
+   "▁pot",
+   "abil",
+   "izzare",
+   "▁l",
+   "'",
+   "acqua",
+   "</s>"
+  ]
+ },
+ {
+  "text": "passage: bollire l'acqua per un minuto",
+  "ids": [
+   0,
+   46692,
+   12,
+   3488,
+   150,
+   107,
+   96,
+   25,
+   47215,
+   117,
+   51,
+   62304,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁passage",
+   ":",
+   "▁bol",
+   "li",
+   "re",
+   "▁l",
+   "'",
+   "acqua",
+   "▁per",
+   "▁un",
+   "▁minuto",
+   "</s>"
+  ]
+ },
+ {
+  "text": "come accendere un fuoco con l'acciarino",
+  "ids": [
+   0,
+   1380,
+   44638,
+   79504,
+   51,
+   132412,
+   158,
+   96,
+   25,
+   72536,
+   43884,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁come",
+   "▁acce",
+   "ndere",
+   "▁un",
+   "▁fuoco",
+   "▁con",
+   "▁l",
+   "'",
+   "accia",
+   "rino",
+   "</s>"
+  ]
+ },
+ {
+  "text": "fermare un'emorragia grave",
+  "ids": [
+   0,
+   57166,
+   107,
+   51,
+   25,
+   195,
+   50248,
+   7366,
+   17202,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁ferma",
+   "re",
+   "▁un",
+   "'",
+   "em",
+   "orra",
+   "gia",
+   "▁grave",
+   "</s>"
+  ]
+ },
+ {
+  "text": "orientarsi di notte con la stella polare",
+  "ids": [
+   0,
+   193008,
+   172,
+   45,
+   70626,
+   158,
+   21,
+   183613,
+   4070,
+   107,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁orientar",
+   "si",
+   "▁di",
+   "▁notte",
+   "▁con",
+   "▁la",
+   "▁stella",
+   "▁pola",
+   "re",
+   "</s>"
+  ]
+ },
+ {
+  "text": "costruire un riparo di emergenza",
+  "ids": [
+   0,
+   168547,
+   51,
+   114323,
+   516,
+   45,
+   6,
+   216040,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁costruire",
+   "▁un",
+   "▁ripa",
+   "ro",
+   "▁di",
+   "▁",
+   "emergenza",
+   "</s>"
+  ]
+ },
+ {
+  "text": "segnali di soccorso",
+  "ids": [
+   0,
+   1931,
+   29858,
+   45,
+   38887,
+   103365,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁seg",
+   "nali",
+   "▁di",
+   "▁soc",
+   "corso",
+   "</s>"
+  ]
+ },
+ {
+  "text": "come si ripara un motore diesel",
+  "ids": [
+   0,
+   1380,
+   78,
+   1427,
+   6276,
+   51,
+   2926,
+   13,
+   65676,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁come",
+   "▁si",
+   "▁ri",
+   "para",
+   "▁un",
+   "▁motor",
+   "e",
+   "▁diesel",
+   "</s>"
+  ]
+ },
+ {
+  "text": "chi ha vinto il mondiale 2022",
+  "ids": [
+   0,
+   1658,
+   256,
+   3862,
+   188,
+   211,
+   57416,
+   72392,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁chi",
+   "▁ha",
+   "▁vin",
+   "to",
+   "▁il",
+   "▁mondiale",
+   "▁2022",
+   "</s>"
+  ]
+ },
+ {
+  "text": "acqua potabile",
+  "ids": [
+   0,
+   54639,
+   1540,
+   24951,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁acqua",
+   "▁pot",
+   "abile",
+   "</s>"
+  ]
+ },
+ {
+  "text": "primo soccorso ustioni",
+  "ids": [
+   0,
+   10014,
+   38887,
+   103365,
+   1821,
+   1363,
+   14,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁primo",
+   "▁soc",
+   "corso",
+   "▁us",
+   "tion",
+   "i",
+   "</s>"
+  ]
+ },
+ {
+  "text": "nodi per corda",
+  "ids": [
+   0,
+   112442,
+   117,
+   160959,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁nodi",
+   "▁per",
+   "▁corda",
+   "</s>"
+  ]
+ },
+ {
+  "text": "How to purify water",
+  "ids": [
+   0,
+   11249,
+   47,
+   7398,
+   40383,
+   7401,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁How",
+   "▁to",
+   "▁pur",
+   "ify",
+   "▁water",
+   "</s>"
+  ]
+ },
+ {
+  "text": "first aid bleeding control",
+  "ids": [
+   0,
+   5117,
+   36442,
+   2586,
+   297,
+   214,
+   6226,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁first",
+   "▁aid",
+   "▁ble",
+   "ed",
+   "ing",
+   "▁control",
+   "</s>"
+  ]
+ },
+ {
+  "text": "città perché è così",
+  "ids": [
+   0,
+   18021,
+   10724,
+   565,
+   10499,
+   2
+  ],
+  "tokens": [
+   "<s>",
+   "▁città",
+   "▁perché",
+   "▁è",
+   "▁così",
+   "</s>"
+  ]
+ }
+]

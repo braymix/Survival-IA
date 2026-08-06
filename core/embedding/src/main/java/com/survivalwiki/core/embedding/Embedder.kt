@@ -1,5 +1,8 @@
 package com.survivalwiki.core.embedding
 
+/** Dimensione dell'embedding e5-small. */
+const val EMBED_DIM: Int = 384
+
 /**
  * Prefissi obbligatori del modello e5: i testi del corpus usano "passage: ",
  * le query usano "query: ". Ometterli degrada gravemente il retrieval.
@@ -17,7 +20,7 @@ enum class E5Prefix(val value: String) {
  */
 interface Embedder {
 
-    /** Dimensione del vettore prodotto (e5-small = 384). */
+    /** Dimensione del vettore prodotto (e5-small = 384, vedi [EMBED_DIM]). */
     val dimension: Int
 
     /** Calcola l'embedding L2-normalizzato di un singolo testo, applicando [prefix]. */

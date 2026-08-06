@@ -24,4 +24,6 @@ dependencies {
     // ONNX Runtime Mobile per multilingual-e5-small INT8 (Fase 3).
     implementation(libs.onnxruntime.android)
     testImplementation(libs.junit)
+    // Solo per leggere le fixture JSON nei test (nessun compiler plugin necessario).
+    testImplementation(libs.kotlinx.serialization.json)
 }

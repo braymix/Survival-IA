@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+.kotlin/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android / IDE
+local.properties
+*.iml
+.idea/
+.cxx/
+captures/
+
+# OS
+.DS_Store
+
+# Python (tools/ingest, tools/eval)
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Modelli e corpus generati (mai committati; scaricati/generati)
+*.gguf
+*.onnx
+tools/ingest/out/
+tools/ingest/input/
+survival_corpus.db

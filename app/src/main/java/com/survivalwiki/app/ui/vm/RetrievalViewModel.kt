@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.survivalwiki.app.data.ModelRepository
 import com.survivalwiki.app.data.RetrieverFactory
 import com.survivalwiki.app.data.SettingsStore
+import com.survivalwiki.core.data.saved.SavedAnswer
+import com.survivalwiki.core.data.saved.SavedAnswerDao
 import com.survivalwiki.core.llm.LlmEngine
 import com.survivalwiki.core.retrieval.AnswerValidation
 import com.survivalwiki.core.retrieval.Category
@@ -50,6 +52,7 @@ class RetrievalViewModel @Inject constructor(
     private val settings: SettingsStore,
     private val engine: LlmEngine,
     private val promptBuilder: PromptBuilder,
+    private val savedDao: SavedAnswerDao,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -86,6 +89,39 @@ class RetrievalViewModel @Inject constructor(
             }
         }
     }
+
+    /** Salva la risposta corrente (testo generato se valido, altrimenti gli estratti) + fonti. */
+    fun saveCurrent() {
+        val g = _state.value as? AnswerUiState.Grounded ?: return
+        val answerText = when (val gen = g.generation) {
+            is GenerationState.Done -> if (gen.validation is AnswerValidation.Valid) gen.text
+                else extractsText(g)
+            is GenerationState.Streaming -> gen.text
+            else -> extractsText(g)
+        }
+        val sourcesJson = g.passages.joinToString(prefix = "[", postfix = "]") { s ->
+            val c = s.chunk
+            """{"doc":${jsonStr(c.docTitle)},"sezione":${jsonStr(c.section ?: "")},""" +
+                """"pagina":${c.pageStart ?: -1},"licenza":${jsonStr(c.license)},""" +
+                """"testo":${jsonStr(c.text)}}"""
+        }
+        viewModelScope.launch {
+            savedDao.upsert(
+                SavedAnswer(
+                    question = query,
+                    answerText = answerText,
+                    sourcesJson = sourcesJson,
+                    createdAt = System.currentTimeMillis(),
+                ),
+            )
+        }
+    }
+
+    private fun extractsText(g: AnswerUiState.Grounded): String =
+        g.passages.mapIndexed { i, s -> "[F${i + 1}] ${s.chunk.text}" }.joinToString("\n\n")
+
+    private fun jsonStr(s: String): String =
+        "\"" + s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", " ") + "\""
 
     private fun setGeneration(state: GenerationState) {
         val g = _state.value as? AnswerUiState.Grounded ?: return

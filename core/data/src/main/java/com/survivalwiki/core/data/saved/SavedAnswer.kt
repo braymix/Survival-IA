@@ -41,6 +41,9 @@ interface SavedAnswerDao {
 
     @Query("DELETE FROM saved_answers WHERE id = :id")
     suspend fun delete(id: Long)
+
+    @Query("DELETE FROM saved_answers")
+    suspend fun deleteAll()
 }
 
 /** Database Room dell'app (cronologia/salvati/note). Il corpus è un DB SQLite separato, sola lettura. */

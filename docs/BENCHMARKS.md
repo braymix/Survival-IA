@@ -45,12 +45,13 @@ Il costo del brute-force cresce linearmente col numero di chunk; resta trascurab
 | Corpus DB (in assets) | 164 KB |
 | Vocab tokenizer (gzip, in assets) | 2,3 MB |
 | APK debug (default, senza llama.cpp) | ~41 MB |
-| APK debug con `-PwithLlama` (arm64, non strippato) | ~120 MB* |
+| **APK release (R8, ABI split arm64, senza llama.cpp)** | **~23 MB** |
+| **APK release con `-PwithLlama`** (arm64) | **~71 MB** |
 | Modello e5 INT8 (scaricato) | ~118 MB |
 | Modello GGUF Qwen2.5-0.5B Q4_K_M (scaricato) | ~398 MB |
 
-\* Le librerie native in debug non sono strippate; la release con R8 + stripping riduce
-significativamente (vedi Fase 7).
+Librerie native nell'APK release+llama (arm64): `libllama.so` ~38 MB, `libonnxruntime.so` ~18 MB,
+`libggml*` ~10 MB, `libsurvivalllm.so` ~0,2 MB. R8 riduce l'APK default da ~41 MB (debug) a ~23 MB.
 
 ## Da misurare su dispositivo (mid-range, arm64)
 

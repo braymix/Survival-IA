@@ -1,7 +1,16 @@
-# R8/ProGuard — regole app. Le regole per librerie native (llama.cpp/onnxruntime)
-# verranno aggiunte nelle fasi 3–4 quando i binding JNI saranno presenti.
+# R8/ProGuard — regole app.
 
-# Mantieni i metodi nativi (JNI) intatti.
+# --- JNI: mantieni intatti i metodi nativi ---
 -keepclasseswithmembernames class * {
     native <methods>;
 }
+
+# ONNX Runtime usa JNI: non offuscare né rimuovere.
+-keep class ai.onnxruntime.** { *; }
+-dontwarn ai.onnxruntime.**
+
+# kotlinx.serialization (usiamo il parsing runtime di JsonElement).
+-keepclassmembers class kotlinx.serialization.json.** { *; }
+-dontwarn kotlinx.serialization.**
+
+# Room/Hilt portano le proprie regole consumer; nulla di extra necessario qui.

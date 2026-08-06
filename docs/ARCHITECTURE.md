@@ -29,13 +29,17 @@ query utente
                            └─ NoReliableSource → schermata fallback + argomenti vicini
 ```
 
-## Stato per fase
-- **Fase 1 (fatta):** scaffold multi-modulo compilante; RRF + SafetyFilter + ConfidenceGate implementati e testati;
-  interfacce `LlmEngine`/`Embedder`/`CorpusReader`; Room `SavedAnswer`; UI stub delle 6 schermate; CI.
-- **Fase 2:** pipeline ingest Python → `survival_corpus.db`.
-- **Fase 3:** OnnxEmbedder + HybridRetriever + CorpusReader reale + modalità Browse (app "wiki" utile).
-- **Fase 4:** llama.cpp JNI + generazione vincolata + post-validazione citazioni.
-- **Fase 5–7:** salvati/settings/onboarding/safety UI, test&benchmark, release.
+## Stato per fase (tutte completate)
+- **Fase 1:** scaffold multi-modulo compilante; RRF + SafetyFilter + ConfidenceGate testati; interfacce
+  `LlmEngine`/`Embedder`/`CorpusReader`; Room `SavedAnswer`; CI.
+- **Fase 2:** pipeline ingest Python → `survival_corpus.db` (+ `--validate`).
+- **Fase 3:** tokenizer Kotlin (parità), OnnxEmbedder, SqliteCorpusReader (FTS5 + dense), HybridRetriever,
+  UI Browse/Ask/Answer (modalità wiki utile offline).
+- **Fase 4:** llama.cpp JNI (opt-in `-PwithLlama`), LlamaCppEngine streaming, ModelDownloader (SHA-256 +
+  ripresa), PromptBuilder + CitationValidator.
+- **Fase 5:** onboarding+disclaimer, Settings (download modelli/soglia/toggle), Salvati, basso consumo, safety.
+- **Fase 6:** golden set + eval — recall@5 100%, anti-allucinazione 100%; `docs/BENCHMARKS.md`.
+- **Fase 7:** release R8 + ABI split (arm64-v8a), README, keep-rules JNI.
 
 ## Comandi
 ```bash

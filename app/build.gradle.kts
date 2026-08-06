@@ -19,11 +19,7 @@ android {
         versionName = "0.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // ABI split: arm64-v8a primario per il carico nativo (llama.cpp/onnxruntime).
-        ndk {
-            abiFilters += listOf("arm64-v8a")
-        }
+        // L'ABI è ristretta dal blocco `splits.abi` sotto (arm64-v8a).
     }
 
     buildTypes {
@@ -49,6 +45,16 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    // ABI split: APK dedicato per arm64-v8a (ABI primaria). Niente universal APK.
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a")
+            isUniversalApk = false
+        }
     }
 
     packaging {

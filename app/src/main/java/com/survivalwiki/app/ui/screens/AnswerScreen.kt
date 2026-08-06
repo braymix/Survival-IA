@@ -2,9 +2,11 @@ package com.survivalwiki.app.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -23,7 +25,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.survivalwiki.app.ui.components.PassageCard
 import com.survivalwiki.app.ui.vm.AnswerUiState
+import com.survivalwiki.app.ui.vm.GenerationState
 import com.survivalwiki.app.ui.vm.RetrievalViewModel
+import com.survivalwiki.core.retrieval.AnswerValidation
 
 @Composable
 fun AnswerScreen(viewModel: RetrievalViewModel = hiltViewModel()) {
@@ -68,9 +72,13 @@ private fun Grounded(s: AnswerUiState.Grounded) {
                     "I risultati migliorano dopo il download in Impostazioni.",
             ) }
         }
+
+        // Blocco risposta generata (se la generazione è attiva).
+        generationBlock(s.generation)
+
         item {
             Text(
-                "Passaggi rilevanti dall'archivio (modalità estratti):",
+                "Passaggi dall'archivio:",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier.padding(vertical = 6.dp),
             )
@@ -78,6 +86,43 @@ private fun Grounded(s: AnswerUiState.Grounded) {
         itemsIndexed(s.passages) { i, scored ->
             PassageCard(index = i + 1, chunk = scored.chunk)
         }
+    }
+}
+
+private fun androidx.compose.foundation.lazy.LazyListScope.generationBlock(gen: GenerationState) {
+    when (gen) {
+        is GenerationState.Disabled -> item {
+            Text("Modalità estratti: i passaggi citati sono la risposta.",
+                style = MaterialTheme.typography.bodySmall)
+        }
+        is GenerationState.Loading -> item {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularProgressIndicator(Modifier.size(18.dp))
+                Text("  Genero la risposta dalle fonti…")
+            }
+        }
+        is GenerationState.Streaming -> item { AnswerCard(gen.text) }
+        is GenerationState.Failed -> item {
+            InfoCard("Generazione non disponibile (${gen.message}). Ecco i passaggi originali.")
+        }
+        is GenerationState.Done -> item {
+            when (val v = gen.validation) {
+                is AnswerValidation.Valid -> AnswerCard(gen.text)
+                is AnswerValidation.NoSource -> InfoCard(
+                    "Non ho informazioni affidabili su questo argomento nel mio archivio.",
+                )
+                is AnswerValidation.Unverifiable -> Column {
+                    InfoCard("Risposta non verificabile (${v.reason}): ecco le fonti originali.")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AnswerCard(text: String) {
+    Card(Modifier.fillMaxWidth().padding(vertical = 6.dp)) {
+        Text(text, Modifier.padding(14.dp), style = MaterialTheme.typography.bodyLarge)
     }
 }
 

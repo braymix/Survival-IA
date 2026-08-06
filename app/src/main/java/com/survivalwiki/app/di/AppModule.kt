@@ -9,7 +9,10 @@ import com.survivalwiki.core.data.corpus.SqliteCorpusReader
 import com.survivalwiki.core.data.saved.AppDatabase
 import com.survivalwiki.core.data.saved.SavedAnswerDao
 import com.survivalwiki.core.embedding.SpmUnigramTokenizer
+import com.survivalwiki.core.llm.LlamaCppEngine
+import com.survivalwiki.core.llm.LlmEngine
 import com.survivalwiki.core.retrieval.CorpusReader
+import com.survivalwiki.core.retrieval.PromptBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,4 +48,15 @@ object AppModule {
 
     @Provides
     fun provideSavedAnswerDao(db: AppDatabase): SavedAnswerDao = db.savedAnswerDao()
+
+    @Provides
+    @Singleton
+    fun providePromptBuilder(@ApplicationContext context: Context): PromptBuilder =
+        PromptBuilder(AssetLoaders.loadGroundedPrompt(context))
+
+    // Engine LLM unico. load() fallisce con grazia se la libreria nativa non è compilata
+    // (build senza -PwithLlama): l'app resta in modalità "solo estratti".
+    @Provides
+    @Singleton
+    fun provideLlmEngine(): LlmEngine = LlamaCppEngine()
 }

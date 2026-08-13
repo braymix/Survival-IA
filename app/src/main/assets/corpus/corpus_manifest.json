@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-08-06T22:46:29.130452+00:00",
+  "embedding_model": "multilingual-e5-small-int8",
+  "embedding_dim": 384,
+  "document_count": 19,
+  "chunk_count": 93,
+  "categories": {
+    "acqua": 10,
+    "attrezzatura": 10,
+    "cibo": 9,
+    "clima": 15,
+    "fuoco": 5,
+    "medico": 15,
+    "navigazione": 10,
+    "rifugio": 5,
+    "segnalazione": 5,
+    "sicurezza": 9
+  },
+  "sha256": "e3d0d0c2b2a47d15fce7f3da1d7962ea61e431e7395f2f703a444100851b2821"
+}

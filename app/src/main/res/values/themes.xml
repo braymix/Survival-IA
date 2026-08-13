@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Tema base per Manifest/splash. La UI reale usa il tema Compose (dark di default). -->
+    <style name="Theme.SurvivalWiki" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>

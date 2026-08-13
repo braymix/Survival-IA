@@ -1,0 +1,33 @@
+# Gradle
+.gradle/
+.kotlin/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android / IDE
+local.properties
+*.iml
+.idea/
+.cxx/
+captures/
+
+# OS
+.DS_Store
+
+# Python (tools/ingest, tools/eval)
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Modelli (mai committati; scaricati a runtime con verifica hash)
+*.gguf
+*.onnx
+tools/models/
+# Output della pipeline di ingest (il DB "buono" viene copiato in app/.../assets/corpus/)
+tools/ingest/out/
+tools/ingest/input/
+# Ambiente Python locale
+tools/.venv/
+# NOTA: app/src/main/assets/corpus/survival_corpus.db È committato (168 KB, bundle offline).

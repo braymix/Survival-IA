@@ -1,0 +1,110 @@
+# Golden set per la valutazione del retrieval.
+# in_domain: ogni domanda ha il doc_id atteso (recall@5 = il doc atteso è tra i primi 5 fusi).
+# out_of_domain: devono TUTTE restituire NESSUNA_FONTE (test anti-allucinazione, atteso 100%).
+
+in_domain:
+  # --- acqua (seed-acqua-01) ---
+  - q: "come rendo potabile l'acqua di un fiume"
+    doc: seed-acqua-01
+  - q: "quanto tempo devo bollire l'acqua per renderla sicura"
+    doc: seed-acqua-01
+  - q: "posso disinfettare l'acqua con il sole"
+    doc: seed-acqua-01
+  - q: "come filtrare l'acqua torbida"
+    doc: seed-acqua-01
+  - q: "metodo SODIS con bottiglia di plastica"
+    doc: seed-acqua-01
+  - q: "l'acqua ha un odore chimico, posso berla"
+    doc: seed-acqua-01
+  - q: "potabilizzazione dell'acqua in emergenza"
+    doc: seed-acqua-01
+
+  # --- fuoco (seed-fuoco-01) ---
+  - q: "come accendere un fuoco con l'acciarino"
+    doc: seed-fuoco-01
+  - q: "che esca usare per accendere il fuoco"
+    doc: seed-fuoco-01
+  - q: "come mantenere la brace durante la notte"
+    doc: seed-fuoco-01
+  - q: "preparare la legna prima di accendere"
+    doc: seed-fuoco-01
+  - q: "accendere un fuoco con il ferrocerio"
+    doc: seed-fuoco-01
+  - q: "è pericoloso fare il fuoco in tenda"
+    doc: seed-fuoco-01
+  - q: "come soffiare sull'esca per far partire la fiamma"
+    doc: seed-fuoco-01
+
+  # --- medico (seed-medico-01) ---
+  - q: "come fermare un'emorragia grave"
+    doc: seed-medico-01
+  - q: "quando usare il laccio emostatico"
+    doc: seed-medico-01
+  - q: "fare pressione diretta su una ferita che sanguina"
+    doc: seed-medico-01
+  - q: "come fare una medicazione compressiva"
+    doc: seed-medico-01
+  - q: "segnali di shock in un ferito"
+    doc: seed-medico-01
+  - q: "il panno è pieno di sangue, cosa faccio"
+    doc: seed-medico-01
+  - q: "controllo delle emorragie esterne"
+    doc: seed-medico-01
+
+  # --- navigazione (seed-nav-01) ---
+  - q: "come orientarmi senza bussola"
+    doc: seed-nav-01
+  - q: "trovare il nord con la stella polare"
+    doc: seed-nav-01
+  - q: "metodo dell'ombra per i punti cardinali"
+    doc: seed-nav-01
+  - q: "come non camminare in cerchio nel bosco"
+    doc: seed-nav-01
+  - q: "individuare il grande carro per orientarsi"
+    doc: seed-nav-01
+  - q: "mantenere una direzione costante camminando"
+    doc: seed-nav-01
+  - q: "orientarsi di notte"
+    doc: seed-nav-01
+
+  # --- rifugio (seed-rifugio-01) ---
+  - q: "come costruire un riparo di emergenza"
+    doc: seed-rifugio-01
+  - q: "isolarsi dal freddo del terreno"
+    doc: seed-rifugio-01
+  - q: "costruire un riparo a spiovente lean-to"
+    doc: seed-rifugio-01
+  - q: "dove posizionare il rifugio nel bosco"
+    doc: seed-rifugio-01
+  - q: "come evitare l'ipotermia di notte"
+    doc: seed-medico-03
+  - q: "coprire il riparo con frasche e foglie"
+    doc: seed-rifugio-01
+
+  # --- segnalazione (seed-segn-01) ---
+  - q: "come segnalare la mia posizione ai soccorsi"
+    doc: seed-segn-01
+  - q: "usare uno specchio per segnalare a un aereo"
+    doc: seed-segn-01
+  - q: "cosa significa la regola del tre"
+    doc: seed-segn-01
+  - q: "fare segnali di fumo di giorno"
+    doc: seed-segn-01
+  - q: "simboli a terra per chiedere aiuto"
+    doc: seed-segn-01
+  - q: "segnali di soccorso internazionali"
+    doc: seed-segn-01
+  - q: "come attirare l'attenzione di un elicottero"
+    doc: seed-segn-01
+
+out_of_domain:
+  - "come si ripara un motore diesel"
+  - "chi ha vinto il campionato mondiale di calcio 2022"
+  - "qual è la capitale dell'Australia"
+  - "ricetta della carbonara"
+  - "come si calcola la derivata di una funzione"
+  - "prezzo delle azioni Apple oggi"
+  - "trama dell'ultimo film di fantascienza"
+  - "come installare Windows su un portatile"
+  - "regole del gioco degli scacchi"
+  - "come si allena un cane a stare seduto"

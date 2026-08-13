@@ -1,0 +1,30 @@
+{
+  "_comment": "Artefatti scaricati al primo avvio (mai nell'APK). Ogni file è verificato con SHA-256. Gli sha256 vanno riempiti quando si congela una release: al primo avvio l'app li confronta e rifiuta i file corrotti.",
+  "schema_version": 1,
+  "artifacts": {
+    "embedding_model": {
+      "name": "multilingual-e5-small INT8 (ONNX)",
+      "filename": "e5-small-int8.onnx",
+      "approx_bytes": 118308185,
+      "url": "https://huggingface.co/Xenova/multilingual-e5-small/resolve/main/onnx/model_quantized.onnx",
+      "sha256": "",
+      "required_for": "retrieval semantico (modalità wiki)"
+    },
+    "embedding_tokenizer": {
+      "name": "Tokenizer XLM-RoBERTa / SentencePiece (per e5)",
+      "filename": "e5-tokenizer.json",
+      "approx_bytes": 17082730,
+      "url": "https://huggingface.co/Xenova/multilingual-e5-small/resolve/main/tokenizer.json",
+      "sha256": "",
+      "required_for": "tokenizzazione query (nota: l'app usa un tokenizer SentencePiece in Kotlin che legge il vocab da questo file)"
+    },
+    "generative_model": {
+      "name": "Qwen2.5-0.5B-Instruct Q4_K_M (GGUF)",
+      "filename": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+      "approx_bytes": 398000000,
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+      "sha256": "",
+      "required_for": "generazione vincolata (opzionale: l'app funziona in modalità 'solo estratti' senza)"
+    }
+  }
+}

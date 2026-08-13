@@ -1,0 +1,12 @@
+# Pipeline di ingest — nessun torch (embedding via ONNX Runtime).
+numpy
+onnxruntime
+tokenizers
+pymupdf
+pyyaml
+ebooklib
+beautifulsoup4
+datasketch
+# OCR opzionale (--ocr): decommenta se servono PDF scansionati
+# pytesseract
+# pillow

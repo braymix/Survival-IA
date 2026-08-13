@@ -1,0 +1,48 @@
+# Elenco delle fonti candidate per il corpus.
+#
+# REGOLA: lo script NON scarica automaticamente nulla di cui non sia verificata la licenza.
+# Ogni fonte deve dichiarare `license`. Se la licenza non è verificabile, marcala `UNKNOWN`:
+# le fonti UNKNOWN sono ESCLUSE dal build di default (richiedono --allow-unknown-license).
+#
+# `enabled: true` + file presente in --input → inclusa. In assenza del file, la fonte è solo
+# documentata qui (placeholder) e non contribuisce al DB.
+
+sources:
+  # --- Corpus seed sintetico incluso nel repo (opera propria, dedicata al pubblico dominio) ---
+  - id: seed-corpus
+    title: SurvivalWiki AI — schede seed
+    author: SurvivalWiki AI
+    year: 2026
+    license: CC0-1.0
+    license_verified: true
+    path: seed_corpus/            # cartella relativa a tools/ingest/
+    enabled: true
+
+  # --- Fonti reali public domain / licenza libera (da fornire come file in --input) ---
+  - id: fm-21-76
+    title: US Army FM 21-76 Survival
+    author: US Department of the Army
+    year: 1992
+    # Opera del governo federale USA: pubblico dominio negli Stati Uniti.
+    license: US-Gov-Public-Domain
+    license_verified: true
+    url: https://archive.org/details/military-manual-fm-21-76-survival
+    enabled: false                # abilitare quando il PDF è presente in --input
+
+  - id: who-first-aid
+    title: WHO/ICRC materiale di primo soccorso in campo
+    author: WHO / ICRC
+    year: 2016
+    # La licenza specifica va verificata documento per documento prima dell'inclusione.
+    license: UNKNOWN
+    license_verified: false
+    enabled: false
+
+  - id: wikibooks-survival
+    title: Wikibooks — Wilderness Survival
+    author: Wikibooks contributors
+    year: 2025
+    license: CC-BY-SA-3.0        # richiede attribuzione: vedi docs/LICENSES.md
+    license_verified: true
+    url: https://en.wikibooks.org/wiki/Wilderness_Survival
+    enabled: false
